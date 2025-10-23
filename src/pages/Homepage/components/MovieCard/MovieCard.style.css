@@ -126,7 +126,7 @@
 
   .movie-card.active {
     transform: scale(1.05);
-    z-index: 2;
+    z-index: 5;
   }
 
   .movie-card.active .overlay {

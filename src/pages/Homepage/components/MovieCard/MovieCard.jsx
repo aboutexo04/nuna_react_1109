@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Badge } from 'react-bootstrap';
 import './MovieCard.style.css';
 import { getGenreName } from '../../../../constants/genreMap';
@@ -10,7 +10,34 @@ const MovieCard = ({movie}) => {
     setIsActive(!isActive);
   };
 
+  const cardRef = useRef(null);
+
+  useEffect(() => {
+    const itemElement = cardRef.current?.closest('.react-multi-carousel-item');
+
+    if (!itemElement) {
+      return;
+    }
+
+    if (isActive) {
+      itemElement.style.position = 'relative';
+      itemElement.style.zIndex = '20';
+      itemElement.style.overflow = 'visible';
+    } else {
+      itemElement.style.position = '';
+      itemElement.style.zIndex = '';
+      itemElement.style.overflow = '';
+    }
+
+    return () => {
+      itemElement.style.position = '';
+      itemElement.style.zIndex = '';
+      itemElement.style.overflow = '';
+    };
+  }, [isActive]);
+
   return <div
+  ref={cardRef}
   style={{backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`}}
   className={`movie-card ${isActive ? 'active' : ''}`}
   onClick={handleToggle}>

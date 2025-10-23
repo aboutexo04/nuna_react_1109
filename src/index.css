@@ -1,0 +1,15 @@
+@media (max-width: 768px) {
+  .carousel-container,
+  .carousel-container .react-multi-carousel-list,
+  .carousel-container .react-multi-carousel-track,
+  .carousel-container .react-multi-carousel-item,
+  .multi-slider {
+    overflow: visible !important;
+  }
+
+  .popular-movies-container,
+  .now-playing-movies-container,
+  .upcoming-movies-container {
+    overflow: visible !important;
+  }
+}
